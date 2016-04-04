@@ -27,6 +27,9 @@ public class ComplierServlet extends HttpServlet{
         String className = null; //类名
         String classStr = null;
         BufferedWriter bw = null;
+        
+        PrintWriter out = resp.getWriter();
+        StringBuffer sb = null;
         try{
             classStr = code.substring(code.indexOf("public class"),code.indexOf("{")).toString();//获取类名字符串
             String[] classStrArray = classStr.split("\\s{1,}");//按空格分开
@@ -59,8 +62,21 @@ public class ComplierServlet extends HttpServlet{
                // Thread.sleep(1000);
                 bw.close();
                 //获取控制台输出的结果
-                Thread runtimeInput = new Thread(new RuntimeInput());
-                runtimeInput.start();
+/*                Thread runtimeInput = new Thread(new RuntimeInput());
+                runtimeInput.start();*/
+                BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String content = null;
+                sb = new StringBuffer();
+                try {
+                    while((content = br.readLine()) != null){
+                      //  System.out.println(content);//如果想把结果输出到页面，直接定义变量就行
+                    	sb.append(content);
+                    }
+                    System.out.println(sb);
+                    out.print(sb);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
                 //获取内存信息,实际过程中，是无法得到这个程序到底多少内存，内存的分配有操作系统决定，如果
                 //程序需要，系统会动态分配内存，如果有对象没有引用，可能会被垃圾回收器回收，所以是无法得到到底多少内存的
@@ -81,13 +97,13 @@ public class ComplierServlet extends HttpServlet{
             e.printStackTrace();
             req.setAttribute("msg", "格式不符合规范，请检查类名是否正确(如：public class YouClassName{}).错误信息:"+e.getMessage());
         }
-
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        
+  //      req.getRequestDispatcher("/index.jsp").forward(req, resp);
 
     }
 
 
-    public class RuntimeInput implements Runnable{
+/*    public class RuntimeInput implements Runnable{
 
         @Override
         public void run() {
@@ -95,13 +111,14 @@ public class ComplierServlet extends HttpServlet{
             String content = null;
             try {
                 while((content = br.readLine()) != null){
-                    System.out.println(content);//如果想把结果输出到页面，直接定义变量就行
+                  //  System.out.println(content);//如果想把结果输出到页面，直接定义变量就行
+                	
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-    }
+    }*/
 
 }

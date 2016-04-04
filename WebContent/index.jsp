@@ -1,21 +1,46 @@
 <%--
-  Created by IntelliJ IDEA.
   User: smartclover
-  Date: 2016/2/10
-  Time: 20:42
-  To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
     <title>JavaOnlineComplier</title>
-    <form action="complier.action" method="post">
+<!--     <form action="complier.action" method="post">
       <textarea name="code">
 
       </textarea>
       <input type="submit" value="submit">
-    </form>
+    </form> -->
+   <script type="text/javascript"  src="jquery-2.2.2.min.js"></script>
+   <script type="text/javascript">
+		function codeData(){
+		    var code = document.getElementById("code").value;
+		    var aj = $.ajax( {  
+		    	     url:'complier.action',// 跳转到 action  
+		    	     data:'code='+code,
+		    	     type:'post',
+		    	     async:false,
+		    	     success:function(data) { 
+		    	    	 alert(data);
+		    	    	 document.getElementById("result").value = data; 
+		    	      },  
+		    	      error : function() {  
+		    	           alert("异常！");  
+		    	      }  
+		    	 });
+			
+		}
+    </script>
   </head>
+  
   <body>
+  	<div class="code-box">
+  		<textarea id="code" rows="" cols=""></textarea>
+  	</div>
+  	<div class="result-box">
+  		<textarea id="result" rows="" cols="" ></textarea>
+  	</div>
+  	<input type="button" value="submit" onclick="javascript:codeData();"/>
   </body>
 </html>
+    
