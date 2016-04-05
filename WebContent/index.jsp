@@ -38,27 +38,25 @@
   </head>
   
   <body>
-  <div class="form-group">
-	  	<div class="form-group panel panel-primary code-box "  style="width: 600px;height: 300px;">
-	  	       <div class="panel-heading">
-      				<h3 class="panel-title">代码</h3>
-   				</div>
-  				 <div class="panel-body">
-  				 	<textarea id="code" class="form-control " rows="10"></textarea>
-   				</div>
-	  	</div>
-     	<div class="form-group">
-		  			<input type="button" value="提交运行" onclick="javascript:codeData();" class="btn btn-primary"/>
-	  	</div>
-	  	<div class="form-group panel panel-primary result-box" style="width: 600px;height: 300px;">
-	  			<div class="panel-heading">
-      				<h3 class="panel-title">运行结果</h3>
-   				</div>
-  				 <div class="panel-body" >
-		  			<textarea id="result" class="form-control" rows="10"></textarea>
-   				</div>
-	  	</div> 
-</div>	  		
+   <div class="form-group">
+        <div class="form-group panel panel-primary code-box col-lg-6 col-md-6 col-sm-6" style="width: 600px;height: 300px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">代码</h3>
+            </div>
+            <div class="panel-body">
+                <textarea id="code" class="form-control " rows="10"></textarea>
+            </div>
+            <input type="button" value="提交运行" onclick="javascript:codeData();" class="btn btn-primary" />
+        </div>  
+        <div class="form-group panel panel-primary result-box col-lg-6 col-md-6 col-sm-6" style="width: 600px;height: 300px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">运行结果</h3>
+            </div>
+            <div class="panel-body">
+                <textarea id="result" class="form-control" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
   </body>
 </html>
     
