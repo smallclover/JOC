@@ -24,7 +24,9 @@
    <script type="text/javascript" src="js/bootstrap.min.js"></script>
    <script type="text/javascript">
 		function codeData(){
-		    var code = document.getElementById("code").value;
+		    //var code = document.getElementById('code').value;
+		    var code = editor.getValue();
+		    alert(code);
 		    var aj = $.ajax( {  
 		    	     url:'complier.action',// 跳转到 action  
 		    	     data:'code='+code,
@@ -51,13 +53,7 @@
                 <h3 class="panel-title">代码</h3>
             </div>
             <div class="panel-body" >
-                <textarea id="code" name="code" class="form-control " rows="18" style="display: none;">
-public class HelloWorld{
-       public static void main(String[] args){
-              System.out.println("HelloWorld");
-       }
-}
-                </textarea>
+                <textarea id="code" name="code" class="form-control " rows="18" ></textarea>
             </div>
             <input type="button" value="提交运行" onclick="javascript:codeData();" class="btn btn-primary" />
         </div>  

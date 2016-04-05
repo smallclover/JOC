@@ -20,7 +20,7 @@ public class ComplierServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String code = req.getParameter("code");//获取页面参数
-
+        System.out.println(code);
         String className = null; //类名
         String classStr = null;
         BufferedWriter bw = null;
@@ -35,11 +35,12 @@ public class ComplierServlet extends HttpServlet{
             }
             else{
                 className = classStrArray[classStrArray.length-1];
-                File sourceFile = new File(className+".java");//保存源代码
-                if(sourceFile.exists()){
-                    sourceFile.delete();
+                File sourceFileJava = new File(className+".java");//保存源代码
+                if(sourceFileJava.exists()){
+                    sourceFileJava.delete();
+
                 }
-                FileWriter fr = new FileWriter(sourceFile);
+                FileWriter fr = new FileWriter(sourceFileJava);
                 bw = new BufferedWriter(fr);
                 bw.write(code);
                 bw.close();
@@ -62,6 +63,12 @@ public class ComplierServlet extends HttpServlet{
 /*                Thread runtimeInput = new Thread(new RuntimeInput());
                 runtimeInput.start();*/
                 BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                
+/*                SequenceInputStream sis = new SequenceInputStream (process.getInputStream (), process.getErrorStream ());
+                InputStreamReader isr = new InputStreamReader (sis, "gbk");
+                BufferedReader br = new BufferedReader (isr);*/
+                
+                
                 String content = null;
                 sb = new StringBuffer();
                 try {
