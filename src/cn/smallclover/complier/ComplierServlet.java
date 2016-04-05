@@ -7,17 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 /**
- * Created by smartclover on 2016/2/10.
+ * 
+ * @author smallclover
+ *
  */
-
 @WebServlet("/complier.action")
 public class ComplierServlet extends HttpServlet{
     private static Process process ;//执行子进程
 
-    /**
-     * 编译并且运行JAVA代码
-     * @author Maple
-     */
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -70,10 +67,17 @@ public class ComplierServlet extends HttpServlet{
                 try {
                     while((content = br.readLine()) != null){
                       //  System.out.println(content);//如果想把结果输出到页面，直接定义变量就行
-                    	sb.append(content);
+                    	sb.append(content+"\n");
                     }
                     System.out.println(sb);
-                    out.print(sb);
+                    String [] resultValue= sb.toString().split("\n{1,}");
+                    
+                    for(int i = 0; i < resultValue.length; i++){
+                    	if(i == 0 || i == 1|| i == 2|| i == 3|| i == resultValue.length - 1){
+                    		continue;
+                    	}
+                    	out.println(resultValue[i]);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
