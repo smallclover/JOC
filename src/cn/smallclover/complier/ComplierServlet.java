@@ -81,7 +81,7 @@ public class ComplierServlet extends HttpServlet{
                     String str2 = sb.toString();
 //                    System.out.println(str2.substring(str2.indexOf("Exception")));
                     String [] resultValue= sb.toString().split("\n{1,}");
-                    if(str2.indexOf("Exception") < 0){
+                    if(str2.indexOf("Exception in thread 'main'") < 0){
                     	for(int i = 0; i < resultValue.length; i++){
                     		if(i == 0 || i == 1|| i == 2|| i == 3 || (i == resultValue.length - 1)){
                     			continue;
@@ -89,7 +89,7 @@ public class ComplierServlet extends HttpServlet{
                     		out.println(resultValue[i]);
                     	}                   	
                     }
-                    if(str2.indexOf("Exception") > 0){
+                    if(str2.indexOf("Exception in thread 'main'") > 0){
                     	out.println(str2.substring(str2.indexOf("Exception")));
                     }
                 } catch (IOException e) {
