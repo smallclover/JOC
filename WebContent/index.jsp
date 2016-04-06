@@ -1,7 +1,7 @@
 <%--
   User: smartclover
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=GBK" language="java" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,9 +12,7 @@
       </textarea>
       <input type="submit" value="submit">
     </form> -->
-    <!-- ç›¸å¯¹è·¯å¾„å’Œç»å¯¹è·¯å¾„ -->
-       
-
+    <!-- Ïà¶ÔÂ·¾¶ºÍ¾ø¶ÔÂ·¾¶ -->
 	<link rel="stylesheet" href="codemirror/lib/codemirror.css">
 	<script src="codemirror/lib/codemirror.js"></script>
 	<script src="codemirror/mode/clike.js"></script>
@@ -28,8 +26,8 @@
 		    document.getElementById("result").value = "compliering......";
 		    var code = editor.getValue();
 		    var aj = $.ajax( {  
-		    	     url:'complier.action',// è·³è½¬åˆ° action  
-		    	     data:'code='+code,
+		    	     url:'complier.action',// Ìø×ªµ½ action  
+		    	     data:{code:code},
 		    	     type:'post',
 		    	     async:true,
 		    	     success:function(data) { 
@@ -37,7 +35,7 @@
 		    	    	 document.getElementById("result").value = data; 
 		    	      },  
 		    	      error : function() { 
-		    	           alert("å¼‚å¸¸ï¼"); 
+		    	           alert("Òì³££¡"); 
 		    	      }  
 		    	 });
 			
@@ -50,7 +48,7 @@
    <div class="form-group">
         <div class="form-group panel panel-primary code-box col-lg-6 col-md-6 col-sm-6" style="width: 600px;height: 450px;">
             <div class="panel-heading">
-                <h3 class="panel-title">ä»£ç </h3>
+                <h3 class="panel-title">´úÂë</h3>
             </div>
             <div class="panel-body" >
                 <textarea id="code" name="code" class="form-control " rows="18" >
@@ -61,11 +59,11 @@ public class HelloWorld{
 }                
                 </textarea>
             </div>
-            <input type="button" value="æäº¤è¿è¡Œ" onclick="javascript:codeData();" class="btn btn-primary" />
+            <input type="button" value="Ìá½»ÔËĞĞ" onclick="javascript:codeData();" class="btn btn-primary" />
         </div>  
         <div class="form-group panel panel-primary result-box col-lg-6 col-md-6 col-sm-6" style="width: 600px;height: 450px;">
             <div class="panel-heading">
-                <h3 class="panel-title">è¿è¡Œç»“æœ</h3>
+                <h3 class="panel-title">ÔËĞĞ½á¹û</h3>
             </div>
             <div class="panel-body">
                 <textarea id="result" class="form-control" rows="18"></textarea>
@@ -78,7 +76,10 @@ public class HelloWorld{
 	  var myTextArea = document.getElementById('code');
 	  var editor = CodeMirror.fromTextArea(myTextArea, {
 	        lineNumbers: true,
-	        mode: "text/x-java"
+	        mode: "text/x-java",
+	        smartIndent:true, // ÊÇ·ñÖÇÄÜËõ½ø
+	        indentUnit : 2,// Ëõ½øµ¥Î»£¬Ä¬ÈÏ2
+	        tabSize : 4,//TabËõ½ø£¬Ä¬ÈÏ4
 	  });
 	</script>   
 </html>

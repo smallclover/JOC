@@ -20,6 +20,7 @@ public class ComplierServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String code = req.getParameter("code");//获取页面参数
+        resp.setContentType("text/html;charset=GBK");
         System.out.println(code);
         String className = null; //类名
         String classStr = null;
