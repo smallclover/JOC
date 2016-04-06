@@ -62,11 +62,11 @@ public class ComplierServlet extends HttpServlet{
                 //获取控制台输出的结果
 /*                Thread runtimeInput = new Thread(new RuntimeInput());
                 runtimeInput.start();*/
-                BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+               // BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 
-/*                SequenceInputStream sis = new SequenceInputStream (process.getInputStream (), process.getErrorStream ());
+                SequenceInputStream sis = new SequenceInputStream (process.getInputStream (), process.getErrorStream ());
                 InputStreamReader isr = new InputStreamReader (sis, "gbk");
-                BufferedReader br = new BufferedReader (isr);*/
+                BufferedReader br = new BufferedReader (isr);
                 
                 
                 String content = null;
@@ -77,13 +77,19 @@ public class ComplierServlet extends HttpServlet{
                     	sb.append(content+"\n");
                     }
                     System.out.println(sb);
+                    String str2 = sb.toString();
+//                    System.out.println(str2.substring(str2.indexOf("Exception")));
                     String [] resultValue= sb.toString().split("\n{1,}");
-                    
-                    for(int i = 0; i < resultValue.length; i++){
-                    	if(i == 0 || i == 1|| i == 2|| i == 3|| i == resultValue.length - 1){
-                    		continue;
-                    	}
-                    	out.println(resultValue[i]);
+                    if(str2.indexOf("Exception") < 0){
+                    	for(int i = 0; i < resultValue.length; i++){
+                    		if(i == 0 || i == 1|| i == 2|| i == 3 || (i == resultValue.length - 1)){
+                    			continue;
+                    		}		
+                    		out.println(resultValue[i]);
+                    	}                   	
+                    }
+                    if(str2.indexOf("Exception") > 0){
+                    	out.println(str2.substring(str2.indexOf("Exception")));
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
