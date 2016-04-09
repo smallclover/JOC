@@ -26,7 +26,8 @@
 		    document.getElementById("result").value = "compliering......";
 		    var code = editor.getValue();
 		    var aj = $.ajax( {  
-		    	     url:'complier.action',// 跳转到 action  
+		    	    // url:'complier.action',// 跳转到 action  
+		    	   	 url:'test.action',
 		    	     data:{code:code},
 		    	     type:'post',
 		    	     async:true,
