@@ -6,12 +6,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.SequenceInputStream;
-
+/**
+ * 编译Java文件的类
+ * @author smallclover
+ *
+ */
 public class Complier {
 	private Process process = null;
 	private BufferedWriter bw = null;
 	private StringBuffer sb = null;
 	private StringBuffer sbResult = null;
+	
+	
 	public String ComplierCode(String className, String path) throws IOException, InterruptedException{
 		Runtime runtime = Runtime.getRuntime();
 		
@@ -26,6 +32,7 @@ public class Complier {
 		bw.flush();
 		bw.write("java " + className + " \n");
 		bw.close();
+		
         SequenceInputStream sis = new SequenceInputStream (process.getInputStream (), process.getErrorStream ());
         InputStreamReader isr = new InputStreamReader (sis, "gbk");
         BufferedReader br = new BufferedReader (isr);
