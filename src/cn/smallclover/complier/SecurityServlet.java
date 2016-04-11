@@ -1,32 +1,29 @@
 package cn.smallclover.complier;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
- * 
+ * 格式验证
  * @author smallclover
  *
  */
-
 @WebServlet("/test.action")
 public class SecurityServlet extends HttpServlet{
-	public Compiler comp = null;
-	public Compiler compi = null;
-	BufferedWriter bw = null;
-	String className = null;
-	String classStr = null;
-	String result = null;	
-	String realpathdir = null;
-	String batPathdir = null;
+	private Compiler compi = null;
+	private BufferedWriter bw = null;
+	private String className = null;//文件名
+	private String result = null;//编译运行的结果
+	private String realpathdir = null;//代码临时存储的路径
+	private String batPathdir = null;//编译的脚本所在地
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
@@ -45,15 +42,17 @@ public class SecurityServlet extends HttpServlet{
 		batPathdir = req.getSession().getServletContext()  
 				.getRealPath("/bat");
 		System.out.println(batPathdir);
-		try {
+		
+		
+		try {		
 			validate(code);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		
+		
 		try {
-//			result = new Complier().ComplierCode(className, realpathdir);
-			System.out.println("开始编译");
+			System.out.println("complier&running");
 			result = new ComplierVer2().ComplierCode(className, batPathdir,realpathdir);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -63,24 +62,36 @@ public class SecurityServlet extends HttpServlet{
 		out.println(result);
 	}
 	
+	/**
+	 * 
+	 * @param code 客户端编写的代码
+	 * @return 格式初步的验证如果正确返回true，不正确返回false
+	 * @throws IOException
+	 */
 	private boolean validate(String code) throws IOException{
 		String classStr = null;
 		String[] classStrArray = null;
+	
+		
 		classStr = code.substring(code.indexOf("public class"), code.indexOf("{"));
 		classStrArray = classStr.split("\\s{1,}");
 		className = classStrArray[classStrArray.length - 1];
 		System.out.println(className);
 		
-		File sourceFile = new File(realpathdir,className+".java");
-		if(sourceFile.exists()){
-			sourceFile.delete();
+		File sourceFileJava = new File(realpathdir,className+".java");
+		File sourceFileClass = new File(realpathdir,className+".class");
+		if(sourceFileJava.exists()){
+			sourceFileJava.delete();
+			sourceFileClass.delete();
 		}
-        FileWriter fr = new FileWriter(sourceFile);
+        FileWriter fr = new FileWriter(sourceFileJava);
         bw = new BufferedWriter(fr);
         bw.write(code);
         bw.close();
         fr.close();
 		return true;
 	}
+	
+	
 	
 }
