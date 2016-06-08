@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="JOC:war exploded">
+    <output-path>$PROJECT_DIR$/build</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="JOC/web/Web" />
+      <element id="directory" name="classes">
+        <element id="module-output" name="JOC" />
+      </element>
+    </root>
+  </artifact>
+</component>

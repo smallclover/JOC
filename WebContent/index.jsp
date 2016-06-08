@@ -17,9 +17,9 @@
 	<script src="codemirror/lib/codemirror.js"></script>
 	<script src="codemirror/mode/clike.js"></script>
 	
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <script type="text/javascript"  src="js/jquery-2.2.2.min.js"></script>
-   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+   <script type="text/javascript"  src="bootstrap/js/jquery-2.2.2.min.js"></script>
+   <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
    <script type="text/javascript">
 		function codeData(){
 		    //var code = document.getElementById('code').value;
@@ -53,11 +53,11 @@
             </div>
             <div class="panel-body" >
                 <textarea id="code" name="code" class="form-control " rows="18" >
-public class HelloWorld{
-	public static void main(String[] args){
-		System.out.print("HelloWorld");
-	}
-}                
+                    public class HelloWorld{
+                        public static void main(String[] args){
+                            System.out.print("HelloWorld");
+                        }
+                    }
                 </textarea>
             </div>
             <input type="button" value="提交运行" onclick="javascript:codeData();" class="btn btn-primary" />
