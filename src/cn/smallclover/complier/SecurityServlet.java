@@ -55,6 +55,7 @@ public class SecurityServlet extends HttpServlet{
 		try {
 			System.out.println("complier&running");
 			result = new ComplierVer2().ComplierCode(className, batPathdir,realpathdir);
+//			result = new Complier().ComplierCode(className, batPathdir, realpathdir);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

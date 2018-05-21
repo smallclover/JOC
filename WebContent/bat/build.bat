@@ -2,10 +2,10 @@
 set javac=javac
 set java=java
 set suffix=.java
-set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_40
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_162
 set classpath=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar
-set path=C:\Program Files\Java\jdk1.8.0_40\bin
-::/d²ÎÊý±ØÐë¼Ó·ñÔò²»»áµ÷µ½Ö¸¶¨µÄÂ·¾¶
+set path=C:\Program Files\Java\jdk1.8.0_162\bin
+::/dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ò²»»ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 
 set /p codePath=
 cd /d %codePath%
